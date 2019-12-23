@@ -1,8 +1,11 @@
+from copy import deepcopy
+
 from flask import Flask, render_template, redirect, session, url_for, request
 from splitwise import Splitwise
 import config as Config
 import datetime
 
+import wallstreet
 from wallstreet import payment_matrix, simplify_matrix
 
 app = Flask(__name__)
@@ -63,11 +66,14 @@ def analyzer():
 
     groups = sObj.getGroups()
     group = [ x for x in groups if x.name == "88 Chemin 2018"][0]
-    users = group.members
+    group.members.sort(key=wallstreet.get_index_for_dude)
+
     expenses = sObj.getExpenses(group_id=group.id, limit=10000, dated_after=datetime.datetime(2017,5, 1))
     matrix = payment_matrix(expenses)
-    simplified_matrix = simplify_matrix(matrix)
-    return render_template("payment_matrix.html", users=users, matrix=matrix, simplified_matrix=simplified_matrix)
+    wallstreet.print_matrix(matrix)
+    simplified_matrix = simplify_matrix(deepcopy(matrix))
+    wallstreet.print_matrix(simplified_matrix)
+    return render_template("payment_matrix.html", users=group.members, matrix=matrix, simplified_matrix=simplified_matrix)
 
 
 if __name__ == "__main__":
