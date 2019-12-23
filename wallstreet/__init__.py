@@ -36,7 +36,7 @@ def payment_matrix(expenses):
             raise RuntimeError("Complex payment. Multiple people paid. Cannot process in the patrix right now")
         if int(paid_by[0].id) in [int(user.id) for user in owed_by]:
             print("Same person paid and owes?")
-        print("Expense: {expense}".format(expense=expense.description))
+        print("Expense: {expense}".format(expense=str(expense.description).encode('utf-8')))
         print("Paid By: {paid_by}".format(paid_by=paid_by[0].first_name))
         print("Amount: {amount}".format(amount=paid_by[0].net_balance))
         print("Dudes who owe: {dude_who_owe}".format(dude_who_owe=[user.first_name for user in owed_by]))
