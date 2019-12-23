@@ -1,7 +1,31 @@
-# flask-splitwise-example
+# 88 Chemin Splitwise Analyzer
 An example Flask application to show the usage of Splitwise SDK
 
-## Installation
+## Installation with Docker
+
+Clone this repository
+
+```bash
+git clone https://github.com/88Chemin/splitwise-analyzer
+cd splitwise-analyzer
+
+```
+## Register your application
+
+Goto [Splitwise](https://secure.splitwise.com/oauth_clients) and register you application. Use the following -
+
+- Homepage URL - http://localhost:5000 
+
+- Callback URL - http://localhost:5000/authorize
+
+Make note of Consumer Key and Consumer Secret
+Execute the run script to build and run the container
+
+```bash
+./run splitwise_analyzer.sh
+```
+
+## Installation 
 
 This application is dependent on [Flask](http://flask.pocoo.org/) and [Splitwise](https://github.com/namaggarwal/splitwise) python packages. Install these python packages using the commands below:
 
