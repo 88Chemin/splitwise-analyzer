@@ -36,7 +36,8 @@ Execute the run script to build and run the container
 ```bash
 ./run splitwise_analyzer.sh
 ```
-
+This will build the image and start the flask application which you can access in your browser at **0.0.0.0:5000**
+Login to Splitwise and then head to **0.0.0.0:5000/analyze** to see the payment matrices.
 ## Installation 
 
 This application is dependent on [Flask](http://flask.pocoo.org/) and [Splitwise](https://github.com/namaggarwal/splitwise) python packages. Install these python packages using the commands below:
